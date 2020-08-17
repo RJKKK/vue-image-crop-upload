@@ -850,7 +850,10 @@ export default {
                         reject(this.status);
                     }
                 };
-                client.upload.addEventListener("progress", uploadProgress, false); //监听进度\
+                //下面的语句在上传图片的时候会报错，原因未知，替换为onprogress后可解决
+                // client.upload.addEventListener("progress", uploadProgress, false); //监听进度\
+
+                client.upload.onprogress = uploadProgress
 				// 设置header
 	            if (typeof headers == 'object' && headers) {
 	                Object.keys(headers).forEach((k) => {
